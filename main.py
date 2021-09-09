@@ -3,16 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-import plotly.graph_objs as go
 
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.neighbors import KNeighborsClassifier#
+from sklearn.metrics import classification_report
 
 st.title("Machine learning and medical diagnosis")
 
@@ -59,7 +56,7 @@ def missingdata():
     g = sns.heatmap(data.isnull(), cmap='RdBu')
     g.set_xlabel("Features")
     g.set_ylabel("Index")
-    g.set_title('Missing feature data')
+    g.set_title('Missing data by feature')
     st.pyplot(g.figure)
 
 missingdata()
@@ -75,8 +72,8 @@ st.write(
 
 
 def countplot ():
-    plt.figure(figsize = (10, 5), dpi = 250)
-    p = sns.countplot(df['Patient_Status'])
+    plt.figure(figsize = (10, 7.5), dpi = 250)
+    p = sns.countplot(df['Patient_Status'], palette = 'Paired')
     p.set_xlabel("Patient status")
     p.set_ylabel("Count")
     st.pyplot(p.figure)
